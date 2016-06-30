@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/eskypl/npme-auth-atlassian-stash/compare/v0.2.4...v0.3.0) (2016-06-30)
+
+
+### Features
+
+* allow case to differ in emails ([2e744bd](https://github.com/eskypl/npme-auth-atlassian-stash/commit/2e744bd))
+
+
+
 <a name="0.2.4"></a>
 ## [0.2.4](https://github.com/eskypl/npme-auth-atlassian-stash/compare/v0.2.3...v0.2.4) (2016-06-30)
 
