@@ -1,20 +1,20 @@
 var url = require('url');
 
 function getProjectData(_repositoryUrl) {
-    var project = _repositoryUrl.match(/\/projects\/([a-z0-9_\-]+)/i);
+    var project = _repositoryUrl.match(/^\/(projects|scp)\/([a-z0-9_\-]+)/i);
     if (project !== null) {
         return {
-            path: project[0],
-            name: project[1]
+            path: '/projects/' + project[2],
+            name: project[2]
         };
     }
 }
 
 function getRepositoryData(_repositoryUrl) {
-    var repo = _repositoryUrl.match(/\/repos\/([a-z0-9_\-]+)/i);
+    var repo = _repositoryUrl.match(/\/([a-z0-9_\-]+)(\.git)?$/i);
     if (repo !== null) {
         return {
-            path: repo[0],
+            path: '/repos/' + repo[1],
             name: repo[1]
         };
     }
