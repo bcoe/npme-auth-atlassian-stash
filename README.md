@@ -9,7 +9,7 @@ Install `npme-auth-atlassian-stash` in `npme`'s data directory
 by default this can be found in `/usr/local/lib/npme/data`.
 
 ```
-npm install `@bcoe/npme-auth-atlassian-stash`
+npm install @bcoe/npme-auth-atlassian-stash
 ```
 
 ## Configuration
