@@ -94,7 +94,7 @@ User.prototype.groups = function () {
             }
 
             if (_responseBody) {
-                self.stashGroups = _.pluck(_responseBody.values, 'name');
+                self.stashGroups = _.map(_responseBody.values, 'name');
                 _resolve(self.stashGroups);
             }
             else {
@@ -142,8 +142,8 @@ var permission = function (_ctx, _repository, _permissionType, _onlyProject) {
 
                 if (_responseBody) {
                     var result = {};
-                    var names = _.pluck(_responseBody.values, pluckPath[0]);
-                    var permissions = _.pluck(_responseBody.values, pluckPath[1]);
+                    var names = _.map(_responseBody.values, pluckPath[0]);
+                    var permissions = _.map(_responseBody.values, pluckPath[1]);
 
                     names.forEach(function (_value, _i) {
                         if (_value === user.name || groups.indexOf(_value) !== -1) {
@@ -185,7 +185,7 @@ User.prototype.permissions = function(_repository) {
         permissions(this, _repository, true)
     ]).then(function (_result) {
         //console.log(_result);
-        return _(_result).map(_.values).flatten().unique().value();
+        return _(_result).map(_.values).flatten().uniq().value();
     });
 };
 
