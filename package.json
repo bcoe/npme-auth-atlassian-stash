@@ -18,18 +18,18 @@
   "author": "Krzysztof Winiarski <krzysztof.winiarski@esky.com>",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^2.3.0",
-    "chai-http": "^1.0.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "mocha": "^2.2.5",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0"
   },
   "dependencies": {
-    "bluebird": "^2.9.26",
-    "lodash": "^3.9.1",
+    "bluebird": "^3.4.1",
+    "lodash": "^4.13.1",
     "rc": "^1.0.3",
     "redis-url": "^1.2.0",
     "request": "^2.55.0",
-    "winston": "^1.0.0"
+    "winston": "^2.2.0"
   }
 }
