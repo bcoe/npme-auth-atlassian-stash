@@ -1,7 +1,7 @@
 var url = require('url');
 
 function getProjectData(_repositoryUrl) {
-    var project = _repositoryUrl.match(/^\/(projects|scp)\/([a-z0-9_\-]+)/i);
+    var project = _repositoryUrl.match(/^\/(projects|scm)\/([a-z0-9_\-]+)/i);
     if (project !== null) {
         return {
             path: '/projects/' + project[2],

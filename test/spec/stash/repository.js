@@ -20,7 +20,7 @@ describe('Repository URL parser', function () {
         expect(url).to.have.deep.property('repository.path', '/repos/bar');
     });
     it('should handle /scp/:project/:repo format URL', function () {
-      var url = repository.parseUrl('http://stash.domain.com/scp/npme/ci-demo-stash.git');
+      var url = repository.parseUrl('http://stash.domain.com/scm/npme/ci-demo-stash.git');
 
       expect(url).to.have.deep.property('project.name', 'npme');
       expect(url).to.have.deep.property('project.path', '/projects/npme');
