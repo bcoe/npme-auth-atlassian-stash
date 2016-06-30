@@ -24,10 +24,9 @@ Authenticator.prototype.authenticate = function (_credentials, _cb) {
             if (!_stashData) {
                 return _cb(new Error('Invalid StashUser object'));
             }
-            console.log(_stashData.user.email, credentials.email)
-            /* if (_stashData.user.email !== credentials.email) {
+            if (_stashData.user.email.toLowerCase() !== credentials.email.toLowerCase()) {
                 return _cb(new Error('Invalid StashUser email'));
-            }*/
+            }
 
             self.logger.debug('Authorization success', _stashData);
             _cb(null, _stashData);
