@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/eskypl/npme-auth-atlassian-stash/compare/v0.2.0...v0.2.1) (2016-06-30)
+
+
+### Bug Fixes
+
+* my stash instance defaulted to a different URL format ([#3](https://github.com/eskypl/npme-auth-atlassian-stash/issues/3)) ([1875ed6](https://github.com/eskypl/npme-auth-atlassian-stash/commit/1875ed6))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/eskypl/npme-auth-atlassian-stash/compare/v0.1.1...v0.2.0) (2016-06-30)
 
