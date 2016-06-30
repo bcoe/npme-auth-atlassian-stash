@@ -180,13 +180,17 @@ var permissions = function (_ctx, _repository, _onlyProject) {
 };
 
 User.prototype.permissions = function(_repository) {
-    return Promise.all([
-        permissions(this, _repository),
-        permissions(this, _repository, true)
-    ]).then(function (_result) {
-        //console.log(_result);
-        return _(_result).map(_.values).flatten().uniq().value();
-    });
+    var _this = this
+    var _result = []
+    return permissions(this, _repository)
+        .then(function (r) {
+          _result.push(r)
+          return permissions(_this, _repository, true)
+        })
+        .then(function (r) {
+          _result.push(r)
+          return _(_result).map(_.values).flatten().uniq().value();
+        });
 };
 
 var stashPermissions = {
