@@ -1,6 +1,6 @@
 {
   "name": "@bcoe/npme-auth-atlassian-stash",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Atlassian Stash authentication and authorization strategy for npm Enterprise.",
   "repository": {
     "type": "git",

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/eskypl/npme-auth-atlassian-stash/compare/v0.3.0...v0.4.0) (2017-01-13)
+
+
+### Features
+
+* support for personal repository urls ([#4](https://github.com/eskypl/npme-auth-atlassian-stash/issues/4)) ([f319091](https://github.com/eskypl/npme-auth-atlassian-stash/commit/f319091))
+* support npm whoami ([#6](https://github.com/eskypl/npme-auth-atlassian-stash/issues/6)) ([a2a6319](https://github.com/eskypl/npme-auth-atlassian-stash/commit/a2a6319))
+* support website login ([#5](https://github.com/eskypl/npme-auth-atlassian-stash/issues/5)) ([02b1abd](https://github.com/eskypl/npme-auth-atlassian-stash/commit/02b1abd))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/eskypl/npme-auth-atlassian-stash/compare/v0.2.4...v0.3.0) (2016-06-30)
 
