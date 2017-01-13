@@ -72,21 +72,21 @@ Authorizer.prototype.authorize = function (_request, _cb) {
         return _cb(new Error('unsupported request method'));
     }
 
-    this.packagePath = _request.path;
-    this.untrustedPackageJson = _request.body;
-    this.token = _request.headers.authorization.replace('Bearer ', '');
+    var packagePath = _request.path;
+    var untrustedPackageJson = _request.body;
+    var token = _request.headers.authorization.replace('Bearer ', '');
 
     // After the initial package publication, the contents of request.body should not be trusted.
     // Instead, you should use request.path to fetch the last version of the package that was published.
-    this.loadPackageJson(this.packagePath).then(function (_package) {
+    this.loadPackageJson(packagePath).then(function (_package) {
         return typeof _package !== 'undefined'
             ? _package // package.json from front-door
-            : self.untrustedPackageJson; // untrusted package.json from request
+            : untrustedPackageJson; // untrusted package.json from request
     }).then(function (_package) {
         logger.debug('using package.json:', _package);
         var repositoryUrl = getRepositoryUrl(_package);
 
-        return self.whoami(self.token).then(function (_whoami) {
+        return whoami(token).then(function (_whoami) {
             logger.info('identified as user', _whoami.name);
             return self.client.user(_whoami.name)
         }).then(function (_stashUser) {
@@ -135,8 +135,27 @@ Authorizer.prototype.loadPackageJson = function (_packagePath) {
     });
 };
 
-Authorizer.prototype.whoami = function(_token) {
-    this.logger.info('fetching session for token', _token);
+Authorizer.prototype.whoami = function (_request, _cb) {
+  var token = null
+  if (_request && _request.headers && _request.headers.authorization && _request.headers.authorization.match(/Bearer /)) {
+    token = _request.headers.authorization.replace('Bearer ', '')
+  }
+  if (!token) {
+    var e = new Error('Not found')
+    e.statusCode = 404
+    return process.nextTick(function () {
+      _cb(e)
+    })
+  }
+  whoami(token).then(function (_whoami) {
+    _cb(null, _whoami)
+  }).catch(function (_error) {
+    _cb(_error)
+  })
+}
+
+function whoami (_token) {
+    // this.logger.info('fetching session for token', _token);
     var session = new Session();
 
     return new Promise(function (_resolve, _reject) {
