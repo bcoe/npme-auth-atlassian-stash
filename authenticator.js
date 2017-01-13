@@ -13,18 +13,19 @@ function Authenticator() {
 Authenticator.prototype.authenticate = function (_credentials, _cb) {
     var self = this;
     var credentials = _credentials.body;
-    var user = this.client.user(credentials.name, credentials.password);
 
     if (!credentials) {
-        _cb(new Error('Missing credentials'));
+        return _cb(new Error('Missing credentials'));
     }
 
+    var user = this.client.user(credentials.name, credentials.password);
+
     try {
-        user.authorize(credentials.name, credentials.password).then(function (_stashData) {
+        user.authorize().then(function (_stashData) {
             if (!_stashData) {
                 return _cb(new Error('Invalid StashUser object'));
             }
-            if (_stashData.user.email.toLowerCase() !== credentials.email.toLowerCase()) {
+            if (credentials.email && _stashData.user.email.toLowerCase() !== credentials.email.toLowerCase()) {
                 return _cb(new Error('Invalid StashUser email'));
             }
 
