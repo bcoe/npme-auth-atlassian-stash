@@ -154,7 +154,7 @@ Authorizer.prototype.whoami = function (_request, _cb) {
   })
 }
 
-function whoami = function (_token) {
+function whoami (_token) {
     this.logger.info('fetching session for token', _token);
     var session = new Session();
 
