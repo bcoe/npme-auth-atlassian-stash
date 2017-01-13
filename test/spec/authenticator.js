@@ -31,4 +31,17 @@ describe('authenticator', function () {
             done();
         });
     });
+
+    it('works for website login (missing email in body)', function (done) {
+      authenticator.authenticate({
+        body: {
+          name: 'bob',
+          password: 'bob'
+        }
+      }, function (error, data) {
+        expect(error).to.be.null
+        expect(data).to.have.property('token', '3dbfc51334ccb878384ce927abd00068d47bde68cce14f5171ddc22b7897b95e')
+        done()
+      })
+    })
 });
