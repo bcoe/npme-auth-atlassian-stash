@@ -18,9 +18,11 @@ function getProjectData(_repositoryUrl) {
 function getRepositoryData(_repositoryUrl) {
     var repo = _repositoryUrl.match(REGEXP_REPO_DATA)
     if (repo !== null) {
+        var repoName = String(repo[1])
+        if (repoName.endsWith('.git')) repoName = repoName.slice(0, -4)
         return {
-            path: '/repos/' + repo[1],
-            name: repo[1]
+            path: '/repos/' + repoName,
+            name: repoName
         };
     }
 }

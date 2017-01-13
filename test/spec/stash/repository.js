@@ -28,4 +28,44 @@ describe('Repository URL parser', function () {
       expect(url).to.have.deep.property('repository.name', 'ci-demo-stash');
       expect(url).to.have.deep.property('repository.path', '/repos/ci-demo-stash');
     })
+
+    it('should handle personal repo url in ssh format', function () {
+      var url = repository.parseUrl('ssh://git@hostname.compute.cloud.com:7999/~andrew.goode/hello-world.git')
+
+      expect(url).to.have.deep.property('project.name', '~andrew.goode')
+      expect(url).to.have.deep.property('project.path', '/projects/~andrew.goode')
+
+      expect(url).to.have.deep.property('repository.name', 'hello-world')
+      expect(url).to.have.deep.property('repository.path', '/repos/hello-world')
+    })
+
+    it('should handle personal repo url in http format', function () {
+      var url = repository.parseUrl('http://andrew.goode@hostname.compute.cloud.com/scm/~andrew.goode/hello-world.git')
+
+      expect(url).to.have.deep.property('project.name', '~andrew.goode')
+      expect(url).to.have.deep.property('project.path', '/projects/~andrew.goode')
+
+      expect(url).to.have.deep.property('repository.name', 'hello-world')
+      expect(url).to.have.deep.property('repository.path', '/repos/hello-world')
+    })
+
+    it('should handle url in http format without .git', function () {
+      var url = repository.parseUrl('http://andrew.goode@hostname.compute.cloud.com/scm/~andrew.goode/hello-world')
+
+      expect(url).to.have.deep.property('project.name', '~andrew.goode')
+      expect(url).to.have.deep.property('project.path', '/projects/~andrew.goode')
+
+      expect(url).to.have.deep.property('repository.name', 'hello-world')
+      expect(url).to.have.deep.property('repository.path', '/repos/hello-world')
+    })
+
+    it('should handle dot in repo name', function () {
+      var url = repository.parseUrl('ssh://git@hostname.compute.cloud.com:7999/~andrew.goode/one.two.git')
+
+      expect(url).to.have.deep.property('project.name', '~andrew.goode')
+      expect(url).to.have.deep.property('project.path', '/projects/~andrew.goode')
+
+      expect(url).to.have.deep.property('repository.name', 'one.two')
+      expect(url).to.have.deep.property('repository.path', '/repos/one.two')
+    })
 });
